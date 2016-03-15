@@ -13,7 +13,7 @@ VOLUME /etc/bacula
 VOLUME /var/lib/bacula
 VOLUME /etc/dhparam
 
-ADD create_dhparam.sh /usr/local/bin
+COPY create_dhparam.sh first_run.sh /usr/local/bin
 
 CMD /usr/local/bin/create_dhparam.sh && /usr/sbin/bacula-dir -c /etc/bacula/bacula-dir.conf -f
 
