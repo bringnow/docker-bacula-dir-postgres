@@ -11,7 +11,10 @@ RUN emerge -q app-backup/bacula
 
 VOLUME /etc/bacula
 VOLUME /var/lib/bacula
+VOLUME /etc/dhparam
 
-CMD /usr/sbin/bacula-dir -c /etc/bacula/bacula-dir.conf -f
+ADD create_dhparam.sh /usr/local/bin
+
+CMD /usr/local/bin/create_dhparam.sh && /usr/sbin/bacula-dir -c /etc/bacula/bacula-dir.conf -f
 
 EXPOSE 9101
