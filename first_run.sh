@@ -2,9 +2,7 @@
 
 cd /usr/libexec/bacula/
 
-PSQL_OPTS="-h ${DB_PORT_5432_TCP_ADDR} -U postgres"
-
-export PGPASSWORD=${DB_ENV_POSTGRES_PASSWORD}
+PSQL_OPTS="-h ${DB_HOST} -U postgres"
 
 createuser ${PSQL_OPTS} -d -R bacula
 ./create_bacula_database ${PSQL_OPTS}
