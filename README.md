@@ -47,3 +47,7 @@ docker-compose up -d dir
 ```
 
 Verify that everything is working as expected using bconsole:
+
+```
+docker exec -it $(docker-compose ps | grep dir | cut -d" " -f 1) bconsole
+```
