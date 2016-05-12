@@ -17,6 +17,7 @@ COPY create_dhparam.sh first_run.sh mail_wrapper.sh /usr/local/bin/
 
 CMD /usr/local/bin/create_dhparam.sh && \
     /usr/sbin/nullmailer-send -d && \
+    rm -fv /var/run/bacula-dir.9101.pid && \
     /usr/sbin/bacula-dir -c /etc/bacula/bacula-dir.conf -f
 
 EXPOSE 9101
