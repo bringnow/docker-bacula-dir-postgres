@@ -4,20 +4,21 @@ MAINTAINER Fabian Köster <koesterreich@fastmail.fm>
 # Install portage tree
 RUN emerge-webrsync
 
+# Enable compilation of postgres backend only
 RUN echo -e "app-backup/bacula postgres -sqlite bacula-nosd \n dev-db/postgresql -server threads" > /etc/portage/package.use/bacula
 
+# Use latest version of bacula
+RUN echo "app-backup/bacula" > /etc/portage/package.keywords/bacula
+
 # Install required packages
-RUN emerge -q app-backup/bacula
+RUN emerge -q sys-fs/inotify-tools app-backup/bacula
 
 VOLUME /etc/bacula
 VOLUME /var/lib/bacula
 VOLUME /etc/dhparam
 
-COPY create_dhparam.sh first_run.sh mail_wrapper.sh /usr/local/bin/
+COPY create_dhparam.sh first_run.sh mail_wrapper.sh entrypoint.sh /usr/local/bin/
 
-CMD /usr/local/bin/create_dhparam.sh && \
-    /usr/sbin/nullmailer-send -d && \
-    rm -fv /var/run/bacula-dir.9101.pid && \
-    /usr/sbin/bacula-dir -c /etc/bacula/bacula-dir.conf -f
+ENTRYPOINT /usr/local/bin/entrypoint.sh
 
 EXPOSE 9101
