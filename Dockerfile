@@ -17,7 +17,7 @@ VOLUME /etc/bacula
 VOLUME /var/lib/bacula
 VOLUME /etc/dhparam
 
-COPY create_dhparam.sh first_run.sh mail_wrapper.sh entrypoint.sh /usr/local/bin/
+COPY create_dhparam.sh first_run.sh mail_wrapper.sh entrypoint.sh update_database.sh /usr/local/bin/
 
 ENTRYPOINT /usr/local/bin/entrypoint.sh
 
