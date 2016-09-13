@@ -51,3 +51,11 @@ Verify that everything is working as expected using bconsole:
 ```
 docker exec -it $(docker-compose ps | grep dir | cut -d" " -f 1) bconsole
 ```
+
+# Database update
+
+When upgrading to a new version of Bacula, you might have to update the database. You can easily do this by executing the following command:
+
+```
+docker-compose run --rm --entrypoint update_database.sh dir
+```
