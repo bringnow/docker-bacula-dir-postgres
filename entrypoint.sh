@@ -20,8 +20,11 @@ BACULA_DIR_COMMAND="/usr/sbin/bacula-dir -c ${BACULA_DIR_CONFIG}"
 
 rm -fv ${BACULA_DIR_PID_FILE} || die "Failed to remove stale PID file"
 
+# Test configuration file first
+${BACULA_DIR_COMMAND} -t || die "Configuration test failed"
+
 # Launch bacula-dir
-${BACULA_DIR_COMMAND}
+${BACULA_DIR_COMMAND} || die "Failed to start bacula-dir"
 
 # Check if config or certificates were changed and restart if necessary
 while inotifywait -q -r --exclude '\.git/' -e modify -e create -e delete $BACULA_DIR_CONFIG /etc/letsencrypt; do
