@@ -38,7 +38,7 @@ First, bring up database:
 
 Wait for it to fully start, then create the Bacula database layout (skip that, if you imported an existing database dump):
 ```
-# docker-compose run --rm dir first_run.sh
+# docker-compose run --rm --entrypoint first_run.sh dir
 ```
 
 Now you can start the bacula director:
