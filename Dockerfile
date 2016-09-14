@@ -4,7 +4,7 @@ MAINTAINER Fabian Köster <koesterreich@fastmail.fm>
 # Install portage tree
 RUN emerge-webrsync
 
-# Enable compilation of postgres backend only
+# Enable compilation of director and postgres backend only
 RUN echo -e "app-backup/bacula postgres -sqlite bacula-nosd \n dev-db/postgresql -server threads" > /etc/portage/package.use/bacula
 
 # Use latest version of bacula
