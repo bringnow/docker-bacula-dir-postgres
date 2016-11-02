@@ -15,6 +15,6 @@ cd /usr/libexec/bacula/
 PSQL_OPTS="-h ${DB_HOST} -U postgres"
 
 ./update_postgresql_tables ${PSQL_OPTS} || die "Failed to update database"
-./grant_bacula_privileges ${PSQL_OPTS} || die "Failed to grant bacula priviledges"
+./grant_postgresql_privileges ${PSQL_OPTS} || die "Failed to grant privileges"
 
 log "Database update completed without errors"
