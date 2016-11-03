@@ -6,8 +6,7 @@ die () {
 }
 
 log () {
-  if [[ "$@" ]]; then echo "[`date +'%Y-%m-%d %T'`] $@";
-  else echo; fi
+  echo "[`date +'%Y-%m-%d %T'`] $@";
 }
 
 BACULA_DIR_CONFIG="/etc/bacula/bacula-dir.conf"
