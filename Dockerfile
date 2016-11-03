@@ -8,6 +8,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     bacula-director-pgsql \
     inotify-tools \
     nullmailer \
+    openssl \
  && rm -rf /var/lib/apt/lists/*
 
 VOLUME /etc/bacula
