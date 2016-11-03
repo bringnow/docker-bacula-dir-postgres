@@ -1,7 +1,14 @@
-FROM alpine:3.4
+FROM ubuntu:16.10
 MAINTAINER Fabian Köster <mail@fabian-koester.com>
 
-RUN apk add --no-cache bacula-pgsql inotify-tools openssl
+RUN echo "bacula-director-pgsql bacula-director-pgsql/dbconfig-install boolean false\n" \
+      "nullmailer shared/mailname string foo\n" \
+      "nullmailer nullmailer/relayhost string bar" | debconf-set-selections
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    bacula-director-pgsql \
+    inotify-tools \
+    nullmailer \
+ && rm -rf /var/lib/apt/lists/*
 
 VOLUME /etc/bacula
 VOLUME /var/lib/bacula
