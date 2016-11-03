@@ -18,6 +18,7 @@ BACULA_DIR_COMMAND="/usr/sbin/bacula-dir -c ${BACULA_DIR_CONFIG}"
 
 /usr/sbin/nullmailer-send -d || die "Failed to start nullmailer daemon"
 
+mkdir -p $(dirname ${BACULA_DIR_PID_FILE}) || die "Failed to create PID directory"
 rm -fv ${BACULA_DIR_PID_FILE} || die "Failed to remove stale PID file"
 
 # Test configuration file first
