@@ -6,6 +6,7 @@ RUN echo "bacula-director-pgsql bacula-director-pgsql/dbconfig-install boolean f
       "nullmailer nullmailer/relayhost string bar" | debconf-set-selections
 RUN apt-get update && apt-get install -y --no-install-recommends \
     bacula-director-pgsql \
+    bacula-console \
     inotify-tools \
     nullmailer \
     openssl \
