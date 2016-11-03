@@ -11,6 +11,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     nullmailer \
     openssl \
     ca-certificates \
+    wakeonlan \
  && rm -rf /var/lib/apt/lists/*
 
 VOLUME /etc/bacula
