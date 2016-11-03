@@ -1,17 +1,7 @@
-FROM gentoo/stage3-amd64-hardened
-MAINTAINER Fabian Köster <koesterreich@fastmail.fm>
+FROM alpine:3.4
+MAINTAINER Fabian Köster <mail@fabian-koester.com>
 
-# Install portage tree
-RUN emerge-webrsync
-
-# Enable compilation of director and postgres backend only
-RUN echo -e "app-backup/bacula postgres -sqlite bacula-nosd \n dev-db/postgresql -server threads" > /etc/portage/package.use/bacula
-
-# Use latest version of bacula
-RUN echo "app-backup/bacula" > /etc/portage/package.keywords/bacula
-
-# Install required packages
-RUN emerge -q sys-fs/inotify-tools app-backup/bacula
+RUN apk add --no-cache bacula-pgsql inotify-tools openssl
 
 VOLUME /etc/bacula
 VOLUME /var/lib/bacula
