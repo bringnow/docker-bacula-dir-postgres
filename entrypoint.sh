@@ -16,7 +16,7 @@ BACULA_DIR_COMMAND="/usr/sbin/bacula-dir -c ${BACULA_DIR_CONFIG}"
 
 /usr/local/bin/create_dhparam.sh || die "Failed to generate dhparam"
 
-/usr/sbin/nullmailer-send -d || die "Failed to start nullmailer daemon"
+/etc/init.d/nullmailer start || die "Failed to start nullmailer daemon"
 
 rm -fv ${BACULA_DIR_PID_FILE} || die "Failed to remove stale PID file"
 
