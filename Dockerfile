@@ -8,7 +8,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     bacula-director-pgsql \
     bacula-console \
     inotify-tools \
-    nullmailer \
+    ssmtp \
     openssl \
     ca-certificates \
     wakeonlan \
