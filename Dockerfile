@@ -14,6 +14,10 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     wakeonlan \
  && rm -rf /var/lib/apt/lists/*
 
+RUN mkdir -p /usr/libexec/bacula/ && \
+    mv /etc/bacula/scripts/* /usr/libexec/bacula/ &&
+    mv /usr/share/bacula-common/defconfig/scripts/* /usr/libexec/bacula/
+
 VOLUME /etc/bacula
 VOLUME /var/lib/bacula
 VOLUME /etc/dhparam
