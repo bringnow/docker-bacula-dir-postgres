@@ -31,7 +31,10 @@ log "Bacula Director started"
 
 # Check if config or certificates were changed and restart if necessary
 while inotifywait -q -r --exclude '\.git/' -e modify -e create -e delete /etc/bacula /etc/letsencrypt; do
-  log "Restarting bacula-dir because of configuration/certificate changes..."
+  log "Configuration changes detected. Will restart bacula-dir in 60 seconds..."
+  sleep 60
   pkill -F ${BACULA_DIR_PID_FILE} || log_error "Failed to kill bacula-dir"
+  sleep 10
   ${BACULA_DIR_COMMAND} || die "Failed to restart bacula-dir"
+  sleep 20
 done
