@@ -1,10 +1,11 @@
-FROM ubuntu:16.10
+FROM ubuntu:18.04
 MAINTAINER Fabian Köster <mail@fabian-koester.com>
 
 RUN echo "bacula-director-pgsql bacula-director-pgsql/dbconfig-install boolean false\n" \
       "nullmailer shared/mailname string foo\n" \
       "nullmailer nullmailer/relayhost string bar" | debconf-set-selections
 RUN apt-get update && apt-get install -y --no-install-recommends \
+    bacula-director \
     bacula-director-pgsql \
     bacula-console \
     inotify-tools \
